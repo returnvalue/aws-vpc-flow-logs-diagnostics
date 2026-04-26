@@ -31,8 +31,7 @@ The system implements a real-time network diagnostics pipeline:
     ```bash
     terraform init
     terraform apply -auto-approve
-    
-```
+    ```
 
 ## Verification & Testing
 
@@ -42,31 +41,27 @@ To test the network diagnostics pipeline:
     ```bash
     awslocal ec2 describe-flow-logs
     aws ec2 describe-flow-logs
-    
-```
+    ```
 
 2.  **Inspect Flow Log Data (Conceptual):**
     After generating traffic within the VPC, you can query the logs using CloudWatch Logs Insights or the CLI:
     ```bash
     awslocal logs get-log-events --log-group-name /aws/vpc/diagnostics-flow-logs --log-stream-name <STREAM_NAME>
     aws logs get-log-events --log-group-name /aws/vpc/diagnostics-flow-logs --log-stream-name <STREAM_NAME>
-    
-```
+    ```
 
 3.  **Check Custom Metric:**
     Verify the custom metric has been created in CloudWatch:
     ```bash
     awslocal cloudwatch list-metrics --namespace VPC/Diagnostics
     aws cloudwatch list-metrics --namespace VPC/Diagnostics
-    
-```
+    ```
 
 4.  **Monitor Alarm Status:**
     ```bash
     awslocal cloudwatch describe-alarms --alarm-names HighRejectedTrafficAlarm
     aws cloudwatch describe-alarms --alarm-names HighRejectedTrafficAlarm
-    
-```
+    ```
 
 ## Cleanup
 
